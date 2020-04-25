@@ -88,3 +88,98 @@ url
 url = "http://%s.s3-website.us-east-1.amazonaws.com" % new_bucket.name
 url
 %history
+
+
+from pathlib import Path
+ls
+pathname = "kitten_web"
+path = Path(pathname)
+path
+path.resolve()
+list(path.iterdir())
+ls kitten_web/
+path.is_dir()
+path.is_file()
+def handle_directory(target):
+    for p in target.iterdir():
+        if p.is_dir(): handle_directory(p)
+        if p.is_file(): print(p)
+
+
+def handle_directory(target):
+    for p in target.iterdir():
+        if p.is_dir(): handle_directory(p)
+        if p.is_file(): print(p)
+/
+z
+\
+/
+def handle_directory(target):
+    for p in target.iterdir():
+        if p.is_dir(): handle_directory(p)
+        if p.is_file(): print(p.as_posix())
+handle_directory(path)
+pathname = "kitten_web"
+path = Path(pathname)
+history
+from pathlib import Path
+ls
+pathname = "kitten_web"
+path = Path(pathname)
+path
+path.resolve()
+list(path.iterdir())
+from pathlib import Path
+pathname = "kitten_web"
+path = Path(pathname)
+path.resolve()
+handle_directory(path)
+handle_directory(path)
+handle_directory(path)
+handle_directory(path)
+handle_directory(path)
+handle_directory(path)
+handle_directory(path)
+pathname = "~/code/automating-aws-with-python/01-webotron/kitten_web/"
+path = Path(pathname)
+path.expanduser()
+handle_directory(path.expanduser())
+pathname = "~/Downloads/Devops/Python/code/automating-aws-with-python/01-webotron/kitten_web/"
+path = Path(pathname)
+path.expanduser()
+handle_directory(path.expanduser())
+path
+root = pathname
+path.relative_to(root)
+path.relative_to(root)
+root
+path
+path.relative_to(root)
+pwd
+root = "/Users/rpokkula/Downloads/Devops/Python/code/automating-aws-with-python/01-webotron/kitten_web/"
+path.relative_to(root)
+path
+root
+path = Path(pathname)
+path
+pathname = '/Users/rpokkula/Downloads/Devops/Python/code/automating-aws-with-python/01-webotron/kitten_web/'
+path = Path(pathname)
+path
+path.relative_to(root)
+root = '/Users/rpokkula/Downloads/Devops/Python/code/automating-aws-with-python/01-webotron/kitten_web/
+pathname = '/Users/rpokkula/Downloads/Devops/Python/code/automating-aws-with-python/01-webotron/kitten_web/images/Maine_coon_kitten_roarie.jpg'
+path = Path(pathname)
+path
+root
+path.relative_to(root)
+def handle_directory(target):
+    for p in target.iterdir():
+        if p.is_dir(): handle_directory(p)
+        if p.is_file(): print(p.as_posix()
+        )
+def handle_directory(target):
+    for p in target.iterdir():
+        if p.is_dir(): handle_directory(p)
+        if p.is_file(): print("path: {}§n Key: {}".format(p, p.relative_to(root)))
+handle_directory(Path(root))
+%history
