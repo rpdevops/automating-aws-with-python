@@ -13,23 +13,31 @@ Webotron automates the process of deploying static web content_type
 """
 
 import boto3
-
 import click
-
 from bucket import BucketManager
 
-SESSION = boto3.Session(profile_name='pythonAutomation')
+#SESSION = boto3.Session(profile_name='pythonAutomation')
 # S3 = SESSION.resource('s3')
-bucket_manager = BucketManager(SESSION)
+#bucket_manager = BucketManager(SESSION)
+
+SESSION = None
+bucket_manager = None
 
 # groups the different functions
 # declarator
 # @click.option('--profile', default=1,help="Use a given AWS profile.")
 @click.group()
-@click.pass_context
-def cli(bucket):
+@click.option('--profile', default=None, help = "Use a given AWS profile.")
+#@click.pass_context
+def cli(profile):
     """Webotron deploys websites to AWS."""
-    pass
+    global SESSION, bucket_manager
+    session_cfg = {}
+    if profile:
+        session_cfg['profile_name']=profile
+
+    SESSION = boto3.Session(**session_cfg) #** unwrap the dictoronalr as a paratmer to function
+    bucket_manager = BucketManager(SESSION)
 
 # ensures the command line arguments matches with number of function parameters
 # click module ensures there is help available for this script --help
