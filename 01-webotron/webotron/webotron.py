@@ -16,35 +16,35 @@ import boto3
 import click
 from bucket import BucketManager
 
-#SESSION = boto3.Session(profile_name='pythonAutomation')
+# SESSION = boto3.Session(profile_name='pythonAutomation')
 # S3 = SESSION.resource('s3')
-#bucket_manager = BucketManager(SESSION)
+# BUCKET_MANAGER = BucketManager(SESSION)
 
 SESSION = None
-bucket_manager = None
+BUCKET_MANAGER = None
 
 # groups the different functions
 # declarator
 # @click.option('--profile', default=1,help="Use a given AWS profile.")
 @click.group()
-@click.option('--profile', default=None, help = "Use a given AWS profile.")
-#@click.pass_context
+@click.option('--profile', default=None, help="Use a given AWS profile.")
+# @click.pass_context
 def cli(profile):
     """Webotron deploys websites to AWS."""
-    global SESSION, bucket_manager
+    global SESSION, BUCKET_MANAGER
     session_cfg = {}
     if profile:
-        session_cfg['profile_name']=profile
+        session_cfg['profile_name'] = profile
 
     SESSION = boto3.Session(**session_cfg) #** unwrap the dictoronalr as a paratmer to function
-    bucket_manager = BucketManager(SESSION)
+    BUCKET_MANAGER = BucketManager(SESSION)
 
 # ensures the command line arguments matches with number of function parameters
 # click module ensures there is help available for this script --help
 @cli.command('list-buckets')
 def list_buckets():
     """List all s3 buckets."""
-    for bucket in bucket_manager.all_buckets():
+    for bucket in BUCKET_MANAGER.all_buckets():
         print(bucket)
 
 
@@ -52,7 +52,7 @@ def list_buckets():
 @click.argument('bucket')
 def list_bucket_objects(bucket):
     """List objects in an S3 bucket."""
-    for obj in bucket_manager.all_objects(bucket):
+    for obj in BUCKET_MANAGER.all_objects(bucket):
         print(obj)
 
 
@@ -60,11 +60,9 @@ def list_bucket_objects(bucket):
 @click.argument('bucket')
 def setup_bucket(bucket):
     """Create and configure S3 buckets."""
-    s3_bucket = bucket_manager.init_bucket(bucket)
-    bucket_manager.set_policy(s3_bucket)
-    bucket_manager.configure_website(s3_bucket)
-
-    return
+    s3_bucket = BUCKET_MANAGER.init_bucket(bucket)
+    BUCKET_MANAGER.set_policy(s3_bucket)
+    BUCKET_MANAGER.configure_website(s3_bucket)
 
 
 @cli.command('sync')
@@ -72,8 +70,8 @@ def setup_bucket(bucket):
 @click.argument('bucket')
 def sync(pathname, bucket):
     """Sync contents of PATHNAME to BUCKET."""
-    bucket_manager.sync(pathname, bucket)
-
+    BUCKET_MANAGER.sync(pathname, bucket)
+    print(BUCKET_MANAGER.get_bucket_url(BUCKET_MANAGER.s3.Bucket(bucket)))
 
 if __name__ == '__main__':
     cli()

@@ -183,3 +183,16 @@ def handle_directory(target):
         if p.is_file(): print("path: {}§n Key: {}".format(p, p.relative_to(root)))
 handle_directory(Path(root))
 %history
+
+
+from collections import namedtuple
+Endpoint = namedtyple('Endpoint', ['name','host','zone'])
+Endpoint = namedtuple('Endpoint', ['name','host','zone'])
+Endpoint
+type(Endpoint)
+ep1 = Endpoint ('US East (Ohio)', 's3-website.us-east-2.amazonaws.com','Z2O1EMRO9K5GLX')
+ep1
+ep1.name
+ep1.host
+ep1.zone
+%history
